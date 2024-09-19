@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Workout Programs</h1>
+    <a href="{{ url_for('new_workout') }}">Create New Workout</a>
+    <ul>
+    {% for workout in workouts %}
+        <li>{{ workout.title }} - {{ workout.date_posted }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
