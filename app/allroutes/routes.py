@@ -1,12 +1,19 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, session
 from app import app, db
-from app.forms import RegistrationForm, LoginForm, WorkoutForm
-from app.models import User, Workout
+from .forms import RegistrationForm, LoginForm, WorkoutForm
+from .models import User, Workout
 from flask_login import login_user, current_user, logout_user, login_required
 
 
 
-@app.route("/")
+@app.route('/user')
+def home():
+    user = session.get('user')
+    return render_template('index.html', user=user)
+
+
+
+# @app.route("/")
 @app.route("/home")
 def home():
     workouts = Workout.query.all()
@@ -55,4 +62,3 @@ def new_workout():
         flash('Your workout has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_workout.html', title='New Workout', form=form)
-
