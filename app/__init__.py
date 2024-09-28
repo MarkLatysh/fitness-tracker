@@ -176,5 +176,3 @@ def new_workout():
         flash('Your workout has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_workout.html', title='New Workout', form=form)
-
-
